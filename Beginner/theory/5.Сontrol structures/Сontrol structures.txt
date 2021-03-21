@@ -1,0 +1,509 @@
+http://golang-book.ru/chapter-05-control-structures.html
+!!!
+https://rtfm.co.ua/books-translations/go-s-nulya/go-chast-7-upravlyayushhie-konstrukcii-operatory-if-else-switch-select/
+
+- что такое управляющие конструкции
+
+ управляющих конструкциях разработчик указывает одно или больше условий,
+ которые будут проверены программой во время выполнения,
+  и в зависимости от этих условий — будут выполнены операторы,
+  если уловие было истинно, и опционально — операторы, которые будут выполненын,
+  если условие было false.
+
+
+- какие бывают управляющие конструкции
+
+    1	if statement оператор if состоит из булева выражения, за которым следуют одно
+    или более других операторов или выражений для выполнения
+    2	if…else statement за оператором if может следовать else, код после которого выполняется,
+    если предыдущее выражение было false
+    3	nested if statements так же допустимо использование вложенных конструкций if/else if
+    внутри других if/else if
+    4	switch statement оператор switch используется  для проверки значения переменной
+    на соответствие списку допустимых значений
+    5	select statement оператор slect схож со switch, но используется преимущественно
+    с каналами
+    6 For
+      Оператор for даёт возможность повторять список инструкций (блок)
+      определённое количество раз. Давайте перепишем предыдущую программу, используя оператор for:
+
+
+- знать синтаксис и уметь применять
+
+Пример:
+
+
+package main
+
+
+
+import "fmt"
+
+
+
+func main() {
+
+   /* local variable definition */
+
+   var a int = 10
+
+   /* check the boolean condition using if statement */
+
+   if( a < 20 ) {
+
+      /* if condition is true then print the following */
+
+      fmt.Printf("a is less than 20\n" )
+
+   }
+
+   fmt.Printf("value of a is : %d\n", a)
+
+}
+Результат:
+
+go run if.go
+a is less than 20
+value of a is : 10
+Re-playCopy to ClipboardPauseFull View
+Оператор IF/ELSE
+За оператором if может следовать оператор else, код в котором будет выполнен, если выражение было false.
+
+Синтаксис:
+
+
+if(boolean_expression) {
+
+   /* statement(s) will execute if the boolean expression is true */
+
+} else {
+
+   /* statement(s) will execute if the boolean expression is false */
+
+}
+
+
+Пример:
+
+package main
+
+import "fmt"
+
+func main() {
+
+   /* local variable definition */
+
+   var a int = 100;
+
+   /* check the boolean condition */
+
+   if( a < 20 ) {
+
+      /* if condition is true then print the following */
+
+      fmt.Printf("a is less than 20\n" );
+    } else {
+
+      /* if condition is false then print the following */
+
+      fmt.Printf("a is not less than 20\n" );
+
+   }
+
+   fmt.Printf("value of a is : %d\n", a);
+18
+}
+Результат:
+
+go run if_else.go
+a is not less than 20
+value of a is : 100
+Re-playCopy to ClipboardPauseFull View
+ELSE IF оператор
+Опционально, за if может следовать оператор else if, за которым может быть завершающий else, что удобно для проверки нескольких условий.
+
+Помните, что оператор if может иметь ноль или только один оператор else, который должен быть заключающим в цепочке else if. При этом if может иметь любое колчиество операторов else if, но все они должны предшествовать заключающему else.
+
+Как только любое из уловий в else if будет успешным — все остальные будут проигнорированы.
+
+Синтаксис:
+
+
+if(boolean_expression 1) {
+
+   /* Executes when the boolean expression 1 is true */
+
+} else if( boolean_expression 2) {
+
+   /* Executes when the boolean expression 2 is true */
+
+} else if( boolean_expression 3) {
+
+   /* Executes when the boolean expression 3 is true */
+
+} else {
+
+   /* executes when the none of the above condition is true */
+
+}
+Пример:
+
+package main
+
+import "fmt"
+ func main() {
+
+   /* local variable definition */
+
+   var a int = 100
+
+   /* check the boolean condition */
+
+   if( a == 10 ) {
+
+      /* if condition is true then print the following */
+
+      fmt.Printf("Value of a is 10\n" )
+
+   } else if( a == 20 ) {
+
+      /* if else if condition is true */
+
+      fmt.Printf("Value of a is 20\n" )
+
+   } else if( a == 30 ) {
+
+      /* if else if condition is true  */
+
+      fmt.Printf("Value of a is 30\n" )
+
+   } else {
+
+      /* if none of the conditions is true */
+
+      fmt.Printf("None of the values is matching\n" )
+
+   }
+
+   fmt.Printf("Exact value of a is: %d\n", a )
+
+}
+Результат:
+
+go run else_if.go
+None of the values is matching
+Exact value of a is: 100
+Re-playCopy to ClipboardPauseFull View
+Вложенный IF
+Так же допустимо использование вложенных конструкций if/else, т.е. указание одного блока условий внутри другого.
+
+Синтаксис:
+
+
+if( boolean_expression 1) {
+
+   /* Executes when the boolean expression 1 is true */
+
+   if(boolean_expression 2) {
+
+      /* Executes when the boolean expression 2 is true */
+
+   }
+
+}
+Пример:
+
+package main
+
+import "fmt"
+
+func main() {
+
+   /* local variable definition */
+
+   var a int = 100
+
+   var b int = 200
+
+   /* check the boolean condition */
+
+   if( a == 100 ) {
+
+      /* if condition is true then check the following */
+
+      if( b == 200 )  {
+
+         /* if condition is true then print the following */
+
+         fmt.Printf("Value of a is 100 and b is 200\n" );
+
+      }
+
+   }
+
+   fmt.Printf("Exact value of a is : %d\n", a );
+
+   fmt.Printf("Exact value of b is : %d\n", b );
+
+}
+Результат:
+
+go run if_nested.go
+Value of a is 100 and b is 200
+Exact value of a is : 100
+Exact value of b is : 200
+Re-playCopy to ClipboardPauseFull View
+Оператор switch
+Оператор switch позволяет выполнять проверку значения переменной на равенство заданному значению, которое называется case.
+
+Переменная проверяется по списку таких case, и в случае, если значение переменной равно значению в case — выполняется следующий за case код.
+
+В Go switch может быть двух типов:
+
+Expression Switch — в case содержится некоторое выражение, результат которого сравнивается со значением выражения в switch
+Type Switch — в case содержится тип, который сравнивается с типом в выражении switch
+Expression Switch
+Синтаксис:
+
+
+switch(boolean-expression or integral type){
+
+   case boolean-expression or integral type :
+
+      statement(s);
+
+   case boolean-expression or integral type :
+
+      statement(s);
+
+   /* you can have any number of case statements */
+
+   default : /* Optional */
+
+      statement(s);
+
+}
+
+
+Пример:
+
+
+package main
+
+import (
+
+    "fmt"
+
+    "os"
+
+    "strconv"
+
+)
+
+func main() {
+
+    var grade string
+
+    // assign first argument to masrks variable
+
+    marks, _ := strconv.Atoi(os.Args[1])
+
+   switch marks {
+
+      case 90: grade = "A"
+
+      case 80: grade = "B"
+
+      case 50,60,70 : grade = "C"
+
+      default: grade = "D"
+
+   }
+
+   switch {
+
+      case grade == "A" :
+
+         fmt.Printf("Excellent!\n" )
+
+      case grade == "B", grade == "C" :
+
+         fmt.Printf("Well done\n" )
+
+      case grade == "D" :
+
+         fmt.Printf("You passed\n" )
+
+      case grade == "F":
+
+         fmt.Printf("Better try again\n" )
+
+      default:
+
+         fmt.Printf("Invalid grade\n" );
+
+   }
+
+
+
+   fmt.Printf("Your grade is  %s\n", grade );
+
+}
+Результат:
+
+go run expr_switch.go 90
+Excellent!
+Your grade is  A
+Re-playCopy to ClipboardPauseFull View
+И если передать 50:
+
+go run expr_switch.go 50
+Well done
+Your grade is  C
+Re-playCopy to ClipboardPauseFull View
+Type Switch
+Синтаксис:
+
+
+switch x.(type){
+
+   case type:
+
+      statement(s);
+
+   case type:
+
+      statement(s);
+
+   /* you can have any number of case statements */
+
+   default: /* Optional */
+
+      statement(s);
+
+}
+Для type switch — выражение в switch должно иметь переменную типа interface{}.
+
+Пример:
+
+
+package main
+
+import "fmt"
+
+import "os"
+
+func main() {
+
+   var x interface{}
+    if (len(os.Args) >= 2) {
+
+       x = os.Args[1]
+
+   }
+
+   switch i := x.(type) {
+
+      case nil:
+
+          fmt.Printf("type of x: %T\n", i)
+
+      case int:
+
+         fmt.Println("x is int")
+
+      case float64:
+
+         fmt.Println("x is float64")
+
+      case func(int) float64:
+
+         fmt.Printf("x is func(int)")
+
+      case bool, string:
+
+         fmt.Println("x is bool or string")
+
+      default:
+
+         fmt.Println("don't know the type")
+
+   }
+
+}
+Результат с передачей string:
+
+go run type_switch.go str
+x is bool or string
+Re-playCopy to ClipboardPauseFull View
+И пустого аргумента:
+
+go run type_switch.go
+type of x: <nil>
+Re-playCopy to ClipboardPauseFull View
+Оператор Select
+Синтаксис:
+
+
+select {
+
+   case communication clause  :
+
+      statement(s);
+
+   case communication clause  :
+
+      statement(s);
+
+   /* you can have any number of case statements */
+
+   default : /* Optional */
+
+      statement(s);
+
+}
+Тип для оператора case при использовании select должен быть операцией передачи данных в канал
+(channel рассмаривается далее).
+
+Пример:
+
+
+package main
+
+import "fmt"
+
+func main() {
+
+   var c1, c2, c3 chan int
+
+   var i1, i2 int
+
+   select {
+
+      case i1 = <-c1:
+
+         fmt.Printf("received ", i1, " from c1\n")
+
+      case c2 <- i2:
+
+         fmt.Printf("sent ", i2, " to c2\n")
+
+      case i3, ok := (<-c3):  // same as: i3, ok := <-c3
+
+         if ok {
+
+            fmt.Printf("received ", i3, " from c3\n")
+
+         } else {
+
+            fmt.Printf("c3 is closed\n")
+
+         }
+
+      default:
+
+         fmt.Printf("no communication\n")
+
+   }
+
+}
