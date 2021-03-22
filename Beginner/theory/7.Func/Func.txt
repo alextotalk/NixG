@@ -458,6 +458,16 @@ func EvenOdd(num int) (int, bool) {
 ?????Напишите функцию с переменным числом параметров, которая
 находит наибольшее число в списке?
 
+func maxNum(list ...int) (maxNum int) {
+	for _, vol := range list {
+		if maxNum < vol {
+			maxNum = vol
+		}
+	}
+	return
+}
+
+
 Используя в качестве примера функцию makeEvenGenerator напишите makeOddGenerator, генерирующую нечётные числа.
 
 Последовательность чисел Фибоначчи определяется как fib(0) = 0, fib(1) = 1, fib(n) = fib(n-1) + fib(n-2). Напишите рекурсивную функцию, находящую fib(n).
