@@ -153,8 +153,8 @@ func main() {
 	first()
 
 	defer func() {
-		str := recover()
-		fmt.Println(str)
+		str1 := recover()
+		fmt.Println(str1)
 	}()
 
 	panic("PANIC")
