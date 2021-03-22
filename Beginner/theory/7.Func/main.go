@@ -47,6 +47,16 @@ func EvenOdd(num int) (int, bool) {
 	n := int(num / 2)
 	return n, num%2 == 0
 }
+
+func maxNum(list ...int) (maxNum int) {
+	for _, vol := range list {
+		if maxNum < vol {
+			maxNum = vol
+		}
+	}
+	return
+}
+
 func main() {
 
 	xs := []float64{98, 93, 77, 82, 83}
@@ -80,6 +90,14 @@ func main() {
 	fmt.Println(EvenOdd(2))
 	fmt.Println(EvenOdd(1))
 	fmt.Println(EvenOdd(1))
+
+	els := []int{
+		48, 96, 86, 68,
+		57, 82, 63, 70,
+		37, 34, 83, 27,
+		19, 97, 9, 17, 111,
+	}
+	fmt.Println(maxNum(els...))
 
 	defer second()
 	first()
