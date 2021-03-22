@@ -468,10 +468,61 @@ func maxNum(list ...int) (maxNum int) {
 }
 
 
-Используя в качестве примера функцию makeEvenGenerator напишите makeOddGenerator, генерирующую нечётные числа.
+????Используя в качестве примера функцию makeEvenGenerator
+напишите makeOddGenerator, генерирующую нечётные числа.
+func makeOddGen() func() uint {
+	i := uint(1)
 
-Последовательность чисел Фибоначчи определяется как fib(0) = 0, fib(1) = 1, fib(n) = fib(n-1) + fib(n-2). Напишите рекурсивную функцию, находящую fib(n).
+	return func() (ret uint) {
+	ret=i
+	i+=2
+	return
+	}
+}
 
-Что такое отложенный вызов, паника и восстановление? Как восстановить функцию после паники?
+????Последовательность чисел Фибоначчи определяется как
+fib(0) = 0, fib(1) = 1, fib(n) = fib(n-1) + fib(n-2).
+Напишите рекурсивную функцию, находящую fib(n).
+
+func fib(n int) int {
+	if n< 2{
+		return n
+	}
+	return fib(n-1) + fib(n-2)
+}
+
+func fib2(n int) []int {
+	result := make([]int, n)
+	for i := 0; i < n; i++ {
+		if i < 2 {
+			result[i] = i + 1
+		} else {
+			result[i] = result[i - 1] + result[i - 2]
+		}
+	}
+	return result
+}
+
+
+?????Что такое отложенный вызов, паника и восстановление?
+Как восстановить функцию после паники?
+
+func recoveryFunction() {
+  if recoveryMessage:=recover(); recoveryMessage != nil {
+    fmt.Println(recoveryMessage)
+  }
+  fmt.Println("This is recovery function...")
+}
+
+func executePanic() {
+  defer recoveryFunction()
+  panic("This is Panic Situation")
+  fmt.Println("The function executes Completely")
+}
+
+func main() {
+  executePanic()
+  fmt.Println("Main block is executed completely...")
+}
 
 

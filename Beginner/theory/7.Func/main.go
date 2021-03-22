@@ -56,8 +56,55 @@ func maxNum(list ...int) (maxNum int) {
 	}
 	return
 }
+func makeOddGen() func() uint {
+	i := uint(1)
+
+	return func() (ret uint) {
+		ret = i
+		i += 2
+		return
+	}
+}
+
+func fib(n int) int {
+	if n < 2 {
+		return n
+	}
+	return fib(n-1) + fib(n-2)
+}
+
+func fib2(n int) []int {
+	result := make([]int, n)
+	for i := 0; i < n; i++ {
+		if i < 2 {
+			result[i] = i + 1
+		} else {
+			result[i] = result[i-1] + result[i-2]
+		}
+	}
+	return result
+}
+
+func recoveryFunction() {
+	if recoveryMessage := recover(); recoveryMessage != nil {
+		fmt.Println(recoveryMessage)
+	}
+	fmt.Println("This is recovery function...")
+}
+
+func executePanic() {
+	defer recoveryFunction()
+	panic("This is Panic Situation")
+	fmt.Println("The function executes Completely")
+}
 
 func main() {
+	fmt.Println(fib(11))
+	fmt.Println(fib2(11))
+
+	nextMakeOddGen := makeOddGen()
+	fmt.Println(nextMakeOddGen())
+	fmt.Println(nextMakeOddGen())
 
 	xs := []float64{98, 93, 77, 82, 83}
 	fmt.Println(average(xs))
@@ -98,6 +145,9 @@ func main() {
 		19, 97, 9, 17, 111,
 	}
 	fmt.Println(maxNum(els...))
+
+	executePanic()
+	fmt.Println("Main block is executed completely...")
 
 	defer second()
 	first()
