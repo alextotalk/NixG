@@ -43,6 +43,9 @@ func swap(x *int, y *int) {
 	*x = *y   // put y into x
 	*y = temp // put temp into y
 }
+func swap2(x, y *int) {
+	*x, *y = *y, *x
+}
 func EvenOdd(num int) (int, bool) {
 	n := int(num / 2)
 	return n, num%2 == 0

@@ -53,9 +53,15 @@ func main() {
 	two := 2
 	swap(&one, &two)
 	fmt.Println("now one==", one, "\nand two==", two)
+	swap2(&one, &two)
+	fmt.Println("now one==", one, "\nand two==", two)
+
 }
 func swap(x, y *int) {
 	tmp := *x
 	*x = *y
 	*y = tmp
+}
+func swap2(x, y *int) {
+	*x, *y = *y, *x
 }
