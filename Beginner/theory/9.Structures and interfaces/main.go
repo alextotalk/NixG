@@ -1,6 +1,9 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func distance(x1, y1, x2, y2 float64) float64 {
 	a := x2 - x1
@@ -24,4 +27,14 @@ func main() {
 	//fmt.Println(rectangleArea(rx1, ry1, rx2, ry2))
 	//fmt.Println(circleArea(cx, cy, cr))
 	Structs()
+	a := new(Android)
+	a.Talk()
+	a.Person.Name = "Alex"
+	a.Talk()
+	r := Rectangle{0, 0, 10, 10}
+	c := Circle{0, 0, 6}
+
+	fmt.Println(totalArea(&r, &c))
+
+	fmt.Println("ok")
 }
