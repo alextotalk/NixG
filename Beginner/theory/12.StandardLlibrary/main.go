@@ -72,6 +72,8 @@ func main() {
 	fmt.Println(errorNew())
 	containerList()
 	sortData()
+	hashesAndCryptography()
+	checkHash()
 }
 
 func readFile() error {
