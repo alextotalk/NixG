@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha1"
 	"fmt"
 	"hash/crc32"
 	"io/ioutil"
@@ -34,4 +35,10 @@ func checkHash() error {
 	}
 	fmt.Println(h1, h2, h1 == h2)
 	return nil
+}
+func cryptHash() {
+	h := sha1.New()
+	h.Write([]byte("test"))
+	bs := h.Sum([]byte{})
+	fmt.Println(bs)
 }

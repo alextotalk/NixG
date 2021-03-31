@@ -74,6 +74,9 @@ func main() {
 	sortData()
 	hashesAndCryptography()
 	checkHash()
+	cryptHash()
+	//testServer()
+	testServer2()
 }
 
 func readFile() error {
