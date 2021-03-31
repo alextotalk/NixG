@@ -76,7 +76,8 @@ func main() {
 	checkHash()
 	cryptHash()
 	//testServer()
-	testServer2()
+	//testServer2()
+	RPC()
 }
 
 func readFile() error {
