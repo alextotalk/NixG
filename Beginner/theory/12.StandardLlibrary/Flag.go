@@ -12,5 +12,5 @@ func Flags() {
 	// Парсинг
 	flag.Parse()
 	// Генерация числа от 0 до max
-	fmt.Println(rand.Intn(*maxp))
+	fmt.Println("Flag - some number", rand.Intn(*maxp))
 }

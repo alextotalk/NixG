@@ -72,13 +72,14 @@ func main() {
 	fmt.Println(errorNew())
 	containerList()
 	sortData()
-	hashesAndCryptography()
-	checkHash()
-	cryptHash()
+	//HashesAndCryptography()
+	//checkHash()
+	//cryptHash()
 	//testServer()
 	//testServer2()
 	//RPC()
-	Flags()
+	//Flags()
+	Mutex()
 }
 
 func readFile() error {

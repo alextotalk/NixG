@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-func hashesAndCryptography() {
+func HashesAndCryptography() {
 	h := crc32.NewIEEE()
 	h.Write([]byte("some text test"))
 	v := h.Sum32()
